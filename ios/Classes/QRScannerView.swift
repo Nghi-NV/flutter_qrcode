@@ -2,6 +2,7 @@ import Flutter
 import UIKit
 import AVFoundation
 import Vision
+import AudioToolbox
 
 // Custom UIView subclass to handle layout updates
 class PreviewView: UIView {

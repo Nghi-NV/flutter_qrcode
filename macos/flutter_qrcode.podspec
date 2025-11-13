@@ -8,11 +8,11 @@ Pod::Spec.new do |s|
   s.summary          = 'A fast and lightweight Flutter plugin for scanning barcodes and QR codes.'
   s.description      = <<-DESC
 A fast and lightweight Flutter plugin for scanning barcodes and QR codes using the device's camera.
-Supports multiple barcode formats with AVFoundation on macOS.
+Supports multiple barcode formats with AVFoundation and Vision Framework on macOS.
                        DESC
-  s.homepage         = 'https://github.com/yourusername/flutter_qrcode'
+  s.homepage         = 'https://github.com/Nghi-NV/flutter_qrcode'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Nghi-NV' => '' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'FlutterMacOS'

@@ -1,7 +1,8 @@
 import Flutter
-import UIKit
+import AppKit
 import AVFoundation
 import Vision
+import AudioToolbox
 
 class QRScannerView: NSObject, FlutterPlatformView {
     private let frame: CGRect
