@@ -34,6 +34,15 @@ class _SimpleAlertExampleState extends State<SimpleAlertExample> {
         onBarcodeScanned: (barcode) {
           _showQRCodeAlert(barcode);
         },
+        // Overlay configuration with scan line animation
+        overlayConfig: const ScannerOverlayConfig(
+          title: 'Scan QR Code',
+          topDescription: 'Point your camera at the QR code',
+          bottomDescription: 'QR code will be detected automatically',
+          borderColor: Colors.blue,
+          showScanLine: true,
+          scanLineDirection: ScanLineDirection.horizontal,
+        ),
       ),
     );
   }

@@ -5,6 +5,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import '../models/barcode.dart';
 import '../models/scanner_config.dart';
+import '../models/scanner_overlay_config.dart';
+import 'scanner_overlay.dart';
 
 /// Callback for when a barcode is scanned
 typedef OnBarcodeScanned = void Function(Barcode barcode);
@@ -24,7 +26,12 @@ class QRScannerView extends StatefulWidget {
   final ScannerConfig config;
 
   /// Overlay widget to display on top of the camera preview
+  /// If null and overlayConfig is provided, a default overlay will be used
   final Widget? overlay;
+
+  /// Configuration for the default scanner overlay
+  /// If overlay is provided, this will be ignored
+  final ScannerOverlayConfig? overlayConfig;
 
   /// Whether the scanner should start automatically
   final bool autoStart;
@@ -35,6 +42,7 @@ class QRScannerView extends StatefulWidget {
     this.onScannerCreated,
     this.config = const ScannerConfig(),
     this.overlay,
+    this.overlayConfig,
     this.autoStart = true,
   });
 
@@ -72,7 +80,10 @@ class _QRScannerViewState extends State<QRScannerView> {
     return Stack(
       children: [
         _buildNativeView(),
-        if (widget.overlay != null) widget.overlay!,
+        if (widget.overlay != null)
+          widget.overlay!
+        else if (widget.overlayConfig != null)
+          ScannerOverlay(config: widget.overlayConfig!),
       ],
     );
   }
@@ -87,7 +98,8 @@ class _QRScannerViewState extends State<QRScannerView> {
           surfaceFactory: (context, controller) {
             return AndroidViewSurface(
               controller: controller as AndroidViewController,
-              gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{},
+              gestureRecognizers:
+                  const <Factory<OneSequenceGestureRecognizer>>{},
               hitTestBehavior: PlatformViewHitTestBehavior.opaque,
             );
           },
@@ -136,6 +148,8 @@ class _QRScannerViewState extends State<QRScannerView> {
 
 /// Controller for the QR scanner
 class QRScannerController {
+  // Platform view ID (stored for potential future use)
+  // ignore: unused_field
   int? _platformViewId;
   MethodChannel? _channel;
   final ScannerConfig config;
@@ -144,10 +158,7 @@ class QRScannerController {
   bool _isDisposed = false;
   bool _isScanning = false;
 
-  QRScannerController({
-    required this.config,
-    this.onBarcodeScanned,
-  });
+  QRScannerController({required this.config, this.onBarcodeScanned});
 
   void _setPlatformViewId(int id) {
     _platformViewId = id;

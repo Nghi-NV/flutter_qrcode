@@ -115,8 +115,13 @@ class _ScannerPageState extends State<ScannerPage> {
           final format = barcode.format.name;
           // Do something with the scanned data
         },
-        overlay: CustomPaint(
-          painter: ScannerOverlayPainter(),
+        overlayConfig: const ScannerOverlayConfig(
+          title: 'Scan QR Code',
+          topDescription: 'Position the QR code within the frame',
+          bottomDescription: 'Make sure the QR code is clearly visible',
+          borderColor: Colors.green,
+          borderWidth: 4.0,
+          cornerLength: 30.0,
         ),
       ),
     );
@@ -214,7 +219,150 @@ await _controller?.setTorch(true);
 await _controller?.switchCamera();
 ```
 
-## Configuration Options
+## Overlay Configuration Options
+
+The `ScannerOverlayConfig` class provides various UI customization options for the scanner overlay:
+
+```dart
+ScannerOverlayConfig(
+  // Title text displayed at the top
+  title: 'Scan QR Code',
+
+  // Top description text (above scan area)
+  topDescription: 'Position the QR code within the frame',
+
+  // Bottom description text (below scan area)
+  bottomDescription: 'Make sure the QR code is clearly visible',
+
+  // Custom widget to display at the top (replaces title if provided)
+  topWidget: CustomWidget(),
+
+  // Custom widget to display at the bottom (replaces bottom description if provided)
+  bottomWidget: CustomWidget(),
+
+  // Color of the scan frame border (default: Colors.green)
+  borderColor: Colors.blue,
+
+  // Width of the scan frame border (default: 4.0)
+  borderWidth: 3.0,
+
+  // Length of corner indicators (default: 30.0)
+  cornerLength: 25.0,
+
+  // Size of the scan area as a fraction of screen width 0.0-1.0 (default: 0.7)
+  scanAreaSize: 0.8,
+
+  // Color of the overlay background (default: Colors.black54)
+  overlayColor: Colors.black.withOpacity(0.5),
+
+  // Border radius of the scan area (default: 0.0)
+  borderRadius: 12.0,
+
+  // Whether to show corner indicators (default: true)
+  showCorners: true,
+
+  // Whether to show the overlay background (default: true)
+  showOverlay: true,
+
+  // Text styles for title and descriptions
+  titleStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+  topDescriptionStyle: TextStyle(fontSize: 16),
+  bottomDescriptionStyle: TextStyle(fontSize: 14),
+
+  // Scan line animation options
+  showScanLine: true,                    // Enable animated scan line (default: false)
+  scanLineDirection: ScanLineDirection.horizontal,  // horizontal or vertical
+  scanLineColor: Colors.green,           // Color of the scan line
+  scanLineWidth: 2.0,                    // Thickness of the scan line
+  scanLineDuration: Duration(milliseconds: 2000),  // Animation speed
+)
+```
+
+### Advanced Overlay Example
+
+```dart
+QRScannerView(
+  config: const ScannerConfig(
+    formats: [BarcodeFormat.qrCode],
+  ),
+  overlayConfig: ScannerOverlayConfig(
+    title: 'Scan QR Code',
+    topDescription: 'Align QR code within the frame',
+    bottomDescription: 'Keep the code steady for best results',
+    borderColor: Colors.blue,
+    borderWidth: 3.0,
+    cornerLength: 30.0,
+    scanAreaSize: 0.75,
+    borderRadius: 16.0,
+    overlayColor: Colors.black.withOpacity(0.6),
+    // Enable animated scan line
+    showScanLine: true,
+    scanLineDirection: ScanLineDirection.horizontal,
+    scanLineColor: Colors.blue,
+    scanLineWidth: 2.0,
+    scanLineDuration: Duration(milliseconds: 2000),
+  ),
+  onBarcodeScanned: (barcode) {
+    // Handle scanned barcode
+  },
+)
+```
+
+### Scan Line Animation Examples
+
+**Horizontal scan line (top to bottom):**
+```dart
+overlayConfig: ScannerOverlayConfig(
+  showScanLine: true,
+  scanLineDirection: ScanLineDirection.horizontal,
+  scanLineColor: Colors.green,
+  scanLineWidth: 2.0,
+  scanLineDuration: Duration(milliseconds: 2000),
+)
+```
+
+**Vertical scan line (left to right):**
+```dart
+overlayConfig: ScannerOverlayConfig(
+  showScanLine: true,
+  scanLineDirection: ScanLineDirection.vertical,
+  scanLineColor: Colors.blue,
+  scanLineWidth: 3.0,
+  scanLineDuration: Duration(milliseconds: 1500),
+)
+```
+
+### Custom Widget Overlay
+
+You can also use custom widgets instead of text:
+
+```dart
+QRScannerView(
+  overlayConfig: ScannerOverlayConfig(
+    topWidget: Column(
+      children: [
+        Icon(Icons.qr_code_scanner, size: 48, color: Colors.white),
+        SizedBox(height: 8),
+        Text('Scan QR Code', style: TextStyle(color: Colors.white, fontSize: 20)),
+      ],
+    ),
+    bottomWidget: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(Icons.info_outline, color: Colors.white70, size: 16),
+        SizedBox(width: 4),
+        Text('Point camera at QR code', style: TextStyle(color: Colors.white70)),
+      ],
+    ),
+    borderColor: Colors.blue,
+  ),
+  onBarcodeScanned: (barcode) {
+    // Handle scanned barcode
+  },
+)
+```
+
+## Scanner Configuration Options
 
 The `ScannerConfig` class provides various customization options:
 

@@ -117,9 +117,9 @@ class HomePage extends StatelessWidget {
                   showDialog(
                     context: context,
                     barrierDismissible: false,
-                    builder: (context) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                    builder:
+                        (context) =>
+                            const Center(child: CircularProgressIndicator()),
                   );
 
                   // Scan the selected image for QR codes
@@ -181,93 +181,91 @@ class HomePage extends StatelessWidget {
                       ),
                     );
                   } else {
-                      // Show alert dialog with detected QR codes
-                      showDialog(
-                        context: context,
-                        builder:
-                            (context) => AlertDialog(
-                              icon: const Icon(
-                                Icons.photo_library,
-                                size: 48,
-                                color: Colors.blue,
+                    // Show alert dialog with detected QR codes
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) => AlertDialog(
+                            icon: const Icon(
+                              Icons.photo_library,
+                              size: 48,
+                              color: Colors.blue,
+                            ),
+                            title: Text(
+                              'Found ${barcodes.length} QR Code${barcodes.length > 1 ? 's' : ''}!',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
                               ),
-                              title: Text(
-                                'Found ${barcodes.length} QR Code${barcodes.length > 1 ? 's' : ''}!',
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              content: SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children:
-                                      barcodes.asMap().entries.map((entry) {
-                                        final index = entry.key;
-                                        final barcode = entry.value;
-                                        return Container(
-                                          margin: const EdgeInsets.only(
-                                            bottom: 12,
+                            ),
+                            content: SingleChildScrollView(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children:
+                                    barcodes.asMap().entries.map((entry) {
+                                      final index = entry.key;
+                                      final barcode = entry.value;
+                                      return Container(
+                                        margin: const EdgeInsets.only(
+                                          bottom: 12,
+                                        ),
+                                        padding: const EdgeInsets.all(12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[100],
+                                          borderRadius: BorderRadius.circular(
+                                            8,
                                           ),
-                                          padding: const EdgeInsets.all(12),
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey[100],
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                            border: Border.all(
-                                              color: Colors.grey[300]!,
-                                            ),
+                                          border: Border.all(
+                                            color: Colors.grey[300]!,
                                           ),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              if (barcodes.length > 1)
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                        bottom: 8,
-                                                      ),
-                                                  child: Text(
-                                                    'QR Code ${index + 1}',
-                                                    style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 12,
-                                                      color: Colors.blue,
-                                                    ),
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            if (barcodes.length > 1)
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                  bottom: 8,
+                                                ),
+                                                child: Text(
+                                                  'QR Code ${index + 1}',
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 12,
+                                                    color: Colors.blue,
                                                   ),
                                                 ),
-                                              SelectableText(
-                                                barcode.rawValue ?? 'No value',
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  fontFamily: 'monospace',
-                                                ),
                                               ),
-                                              const SizedBox(height: 8),
-                                              Text(
-                                                'Format: ${barcode.format.name.toUpperCase()}',
-                                                style: const TextStyle(
-                                                  fontSize: 11,
-                                                  color: Colors.grey,
-                                                ),
+                                            SelectableText(
+                                              barcode.rawValue ?? 'No value',
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                fontFamily: 'monospace',
                                               ),
-                                            ],
-                                          ),
-                                        );
-                                      }).toList(),
-                                ),
+                                            ),
+                                            const SizedBox(height: 8),
+                                            Text(
+                                              'Format: ${barcode.format.name.toUpperCase()}',
+                                              style: const TextStyle(
+                                                fontSize: 11,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    }).toList(),
                               ),
-                              actions: [
-                                FilledButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('OK'),
-                                ),
-                              ],
                             ),
-                      );
+                            actions: [
+                              FilledButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('OK'),
+                              ),
+                            ],
+                          ),
+                    );
                   }
                 } catch (e, stackTrace) {
                   debugPrint('Error scanning image: $e');
@@ -275,8 +273,10 @@ class HomePage extends StatelessWidget {
 
                   if (context.mounted) {
                     // Close loading dialog if open
-                    Navigator.of(context, rootNavigator: true)
-                        .popUntil((route) => route.isFirst);
+                    Navigator.of(
+                      context,
+                      rootNavigator: true,
+                    ).popUntil((route) => route.isFirst);
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -378,7 +378,25 @@ class _ScannerPageState extends State<ScannerPage> {
                       });
                       _showResultDialog(barcode);
                     },
-                    overlay: CustomPaint(painter: ScannerOverlayPainter()),
+                    overlayConfig: ScannerOverlayConfig(
+                      title: 'Scan QR Code',
+                      topDescription: 'Position the QR code within the frame',
+                      bottomDescription:
+                          'Keep the code steady for best results',
+                      showToggleTorchButton: true,
+                      onToggleTorch: () {
+                        _controller?.toggleTorch();
+                      },
+                      // borderColor: Colors.green,
+                      // borderWidth: 2.0,
+                      // cornerLength: 30.0,
+                      // scanAreaSize: 0.7,
+                      // showScanLine: true,
+                      // scanLineDirection: ScanLineDirection.vertical,
+                      // scanLineColor: Colors.green,
+                      // scanLineWidth: 2.0,
+                      // scanLineDuration: Duration(milliseconds: 2000),
+                    ),
                   ),
                   if (_scannedCode != null)
                     Positioned(
@@ -565,87 +583,4 @@ class _ScannerPageState extends State<ScannerPage> {
     _controller?.dispose();
     super.dispose();
   }
-}
-
-class ScannerOverlayPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint =
-        Paint()
-          ..color = Colors.black54
-          ..style = PaintingStyle.fill;
-
-    final scanAreaSize = size.width * 0.7;
-    final left = (size.width - scanAreaSize) / 2;
-    final top = (size.height - scanAreaSize) / 2;
-
-    // Draw semi-transparent overlay
-    canvas.drawPath(
-      Path()
-        ..addRect(Rect.fromLTWH(0, 0, size.width, size.height))
-        ..addRect(Rect.fromLTWH(left, top, scanAreaSize, scanAreaSize))
-        ..fillType = PathFillType.evenOdd,
-      paint,
-    );
-
-    // Draw corner borders
-    final borderPaint =
-        Paint()
-          ..color = Colors.green
-          ..strokeWidth = 4
-          ..style = PaintingStyle.stroke;
-
-    final cornerLength = 30.0;
-
-    // Top-left corner
-    canvas.drawLine(
-      Offset(left, top),
-      Offset(left + cornerLength, top),
-      borderPaint,
-    );
-    canvas.drawLine(
-      Offset(left, top),
-      Offset(left, top + cornerLength),
-      borderPaint,
-    );
-
-    // Top-right corner
-    canvas.drawLine(
-      Offset(left + scanAreaSize - cornerLength, top),
-      Offset(left + scanAreaSize, top),
-      borderPaint,
-    );
-    canvas.drawLine(
-      Offset(left + scanAreaSize, top),
-      Offset(left + scanAreaSize, top + cornerLength),
-      borderPaint,
-    );
-
-    // Bottom-left corner
-    canvas.drawLine(
-      Offset(left, top + scanAreaSize - cornerLength),
-      Offset(left, top + scanAreaSize),
-      borderPaint,
-    );
-    canvas.drawLine(
-      Offset(left, top + scanAreaSize),
-      Offset(left + cornerLength, top + scanAreaSize),
-      borderPaint,
-    );
-
-    // Bottom-right corner
-    canvas.drawLine(
-      Offset(left + scanAreaSize - cornerLength, top + scanAreaSize),
-      Offset(left + scanAreaSize, top + scanAreaSize),
-      borderPaint,
-    );
-    canvas.drawLine(
-      Offset(left + scanAreaSize, top + scanAreaSize - cornerLength),
-      Offset(left + scanAreaSize, top + scanAreaSize),
-      borderPaint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

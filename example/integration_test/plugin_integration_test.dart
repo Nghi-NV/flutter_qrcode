@@ -6,7 +6,6 @@
 // For more information about Flutter integration tests, please see
 // https://flutter.dev/to/integration-testing
 
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
@@ -15,11 +14,10 @@ import 'package:flutter_qrcode/flutter_qrcode.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('getPlatformVersion test', (WidgetTester tester) async {
-    final FlutterQrcode plugin = FlutterQrcode();
-    final String? version = await plugin.getPlatformVersion();
-    // The version string depends on the host platform running the test, so
-    // just assert that some non-empty string is returned.
-    expect(version?.isNotEmpty, true);
+  testWidgets('hasCameraPermission test', (WidgetTester tester) async {
+    final FlutterQrcode plugin = FlutterQrcode.instance;
+    final bool hasPermission = await plugin.hasCameraPermission();
+    // Just assert that the method returns a boolean value
+    expect(hasPermission, isA<bool>());
   });
 }

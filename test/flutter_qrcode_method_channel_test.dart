@@ -5,23 +5,28 @@ import 'package:flutter_qrcode/flutter_qrcode_method_channel.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  MethodChannelFlutterQrcode platform = MethodChannelFlutterQrcode();
+  final MethodChannelFlutterQrcode platform = MethodChannelFlutterQrcode();
   const MethodChannel channel = MethodChannel('flutter_qrcode');
 
   setUp(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
       channel,
       (MethodCall methodCall) async {
-        return '42';
+        if (methodCall.method == 'hasCameraPermission') {
+          return true;
+        }
+        return null;
       },
     );
   });
 
   tearDown(() {
-    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await platform.getPlatformVersion(), '42');
+  test('hasCameraPermission', () async {
+    expect(await platform.hasCameraPermission(), true);
   });
 }
