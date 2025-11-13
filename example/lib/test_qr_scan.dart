@@ -36,7 +36,7 @@ class _TestQRScanPageState extends State<TestQRScanPage> {
         _result = 'Scanning image...\nPath: ${image.path}';
       });
 
-      final barcodes = await FlutterQrcode.instance.scanImagePath(image.path);
+      final barcodes = await LumiQrScanner.instance.scanImagePath(image.path);
 
       setState(() {
         if (barcodes.isEmpty) {

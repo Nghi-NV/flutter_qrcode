@@ -5,8 +5,8 @@ import 'package:lumi_qr_scanner/lumi_qr_scanner_method_channel.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  final MethodChannelFlutterQrcode platform = MethodChannelFlutterQrcode();
-  const MethodChannel channel = MethodChannel('flutter_qrcode');
+  final MethodChannelLumiQrScanner platform = MethodChannelLumiQrScanner();
+  const MethodChannel channel = MethodChannel('lumi_qr_scanner');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger

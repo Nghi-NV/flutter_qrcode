@@ -26,8 +26,8 @@ import io.flutter.plugin.common.PluginRegistry
 import java.io.File
 import java.io.InputStream
 
-/** FlutterQrcodePlugin */
-class FlutterQrcodePlugin: FlutterPlugin, MethodCallHandler, ActivityAware,
+/** LumiQrScannerPlugin */
+class LumiQrScannerPlugin: FlutterPlugin, MethodCallHandler, ActivityAware,
     PluginRegistry.RequestPermissionsResultListener {
 
   private lateinit var channel : MethodChannel
@@ -125,7 +125,7 @@ class FlutterQrcodePlugin: FlutterPlugin, MethodCallHandler, ActivityAware,
           bitmap = BitmapFactory.decodeFile(file.absolutePath)
         }
       } catch (e: Exception) {
-        android.util.Log.e("FlutterQrcodePlugin", "Failed to decode bitmap", e)
+        android.util.Log.e("LumiQrScannerPlugin", "Failed to decode bitmap", e)
       }
 
       if (bitmap == null) {
@@ -139,7 +139,7 @@ class FlutterQrcodePlugin: FlutterPlugin, MethodCallHandler, ActivityAware,
       // Try multi-scale scanning for better detection
       scanImageMultiScale(rotatedBitmap, result)
     } catch (e: Exception) {
-      android.util.Log.e("FlutterQrcodePlugin", "Error scanning image", e)
+      android.util.Log.e("LumiQrScannerPlugin", "Error scanning image", e)
       result.error("SCAN_ERROR", "Failed to scan image: ${e.message}", null)
     }
   }
@@ -193,7 +193,7 @@ class FlutterQrcodePlugin: FlutterPlugin, MethodCallHandler, ActivityAware,
         }
       }
     } catch (e: Exception) {
-      android.util.Log.e("FlutterQrcodePlugin", "Error scanning image", e)
+      android.util.Log.e("LumiQrScannerPlugin", "Error scanning image", e)
       // Try next scale on error
       tryNextScale(originalBitmap, scales, scaleIndex + 1, result)
     }
@@ -315,7 +315,7 @@ class FlutterQrcodePlugin: FlutterPlugin, MethodCallHandler, ActivityAware,
       }
       rotatedBitmap
     } catch (e: Exception) {
-      android.util.Log.e("FlutterQrcodePlugin", "Failed to rotate bitmap", e)
+      android.util.Log.e("LumiQrScannerPlugin", "Failed to rotate bitmap", e)
       bitmap
     }
   }
@@ -350,7 +350,7 @@ class FlutterQrcodePlugin: FlutterPlugin, MethodCallHandler, ActivityAware,
       }
       scaledBitmap
     } catch (e: Exception) {
-      android.util.Log.e("FlutterQrcodePlugin", "Failed to scale bitmap", e)
+      android.util.Log.e("LumiQrScannerPlugin", "Failed to scale bitmap", e)
       bitmap
     }
   }
@@ -418,7 +418,7 @@ class FlutterQrcodePlugin: FlutterPlugin, MethodCallHandler, ActivityAware,
         }
       }
       .addOnFailureListener { e ->
-        android.util.Log.e("FlutterQrcodePlugin", "Scan failed", e)
+        android.util.Log.e("LumiQrScannerPlugin", "Scan failed", e)
         result.error("SCAN_ERROR", "Failed to scan: ${e.message}", null)
       }
   }

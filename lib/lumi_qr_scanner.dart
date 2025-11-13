@@ -12,21 +12,21 @@ export 'src/models/scanner_overlay_config.dart'
 export 'src/widgets/qr_scanner_view.dart';
 export 'src/widgets/scanner_overlay.dart';
 
-/// Main class for Flutter QRCode plugin
-class FlutterQrcode {
-  static final FlutterQrcode _instance = FlutterQrcode._();
+/// Main class for Lumi QR Scanner plugin
+class LumiQrScanner {
+  static final LumiQrScanner _instance = LumiQrScanner._();
 
-  FlutterQrcode._();
+  LumiQrScanner._();
 
   /// Get singleton instance
-  static FlutterQrcode get instance => _instance;
+  static LumiQrScanner get instance => _instance;
 
   /// Scan barcode/QR code from an image file
   ///
   /// [imagePath] - Path to the image file
   /// Returns a list of detected barcodes, or empty list if none found
   Future<List<Barcode>> scanImagePath(String imagePath) async {
-    final result = await FlutterQrcodePlatform.instance.scanImagePath(
+    final result = await LumiQrScannerPlatform.instance.scanImagePath(
       imagePath,
     );
     return result ?? [];
@@ -37,7 +37,7 @@ class FlutterQrcode {
   /// [imageBytes] - Raw image bytes
   /// Returns a list of detected barcodes, or empty list if none found
   Future<List<Barcode>> scanImageBytes(List<int> imageBytes) async {
-    final result = await FlutterQrcodePlatform.instance.scanImageBytes(
+    final result = await LumiQrScannerPlatform.instance.scanImageBytes(
       imageBytes,
     );
     return result ?? [];
@@ -47,13 +47,13 @@ class FlutterQrcode {
   ///
   /// Returns true if permission is granted, false otherwise
   Future<bool> requestCameraPermission() {
-    return FlutterQrcodePlatform.instance.requestCameraPermission();
+    return LumiQrScannerPlatform.instance.requestCameraPermission();
   }
 
   /// Check if camera permission is granted
   ///
   /// Returns true if permission is granted, false otherwise
   Future<bool> hasCameraPermission() {
-    return FlutterQrcodePlatform.instance.hasCameraPermission();
+    return LumiQrScannerPlatform.instance.hasCameraPermission();
   }
 }

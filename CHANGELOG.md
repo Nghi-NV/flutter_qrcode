@@ -1,3 +1,11 @@
+## 0.0.2
+
+* Rename package from `flutter_qrcode` to `lumi_qr_scanner`
+* Update all class names: `FlutterQrcode` → `LumiQrScanner`, `FlutterQrcodePlatform` → `LumiQrScannerPlatform`, etc.
+* Update plugin class names in native code (Android, iOS, macOS)
+* Update GitHub repository URLs
+* Fix Android plugin file naming to match class name
+
 ## 0.0.1
 
 * Initial release

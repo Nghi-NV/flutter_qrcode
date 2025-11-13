@@ -308,7 +308,7 @@ Future<void> scanFromGallery(BuildContext context) async {
   final image = await picker.pickImage(source: ImageSource.gallery);
 
   if (image != null) {
-    final barcodes = await FlutterQrcode.instance.scanImagePath(image.path);
+    final barcodes = await LumiQrScanner.instance.scanImagePath(image.path);
 
     if (barcodes.isEmpty) {
       // Show error

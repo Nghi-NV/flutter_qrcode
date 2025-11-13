@@ -15,7 +15,7 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('hasCameraPermission test', (WidgetTester tester) async {
-    final FlutterQrcode plugin = FlutterQrcode.instance;
+    final LumiQrScanner plugin = LumiQrScanner.instance;
     final bool hasPermission = await plugin.hasCameraPermission();
     // Just assert that the method returns a boolean value
     expect(hasPermission, isA<bool>());

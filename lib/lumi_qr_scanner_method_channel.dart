@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'lumi_qr_scanner_platform_interface.dart';
 import 'src/models/barcode.dart';
 
-/// An implementation of [FlutterQrcodePlatform] that uses method channels.
-class MethodChannelFlutterQrcode extends FlutterQrcodePlatform {
+/// An implementation of [LumiQrScannerPlatform] that uses method channels.
+class MethodChannelLumiQrScanner extends LumiQrScannerPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('lumi_qr_scanner');
@@ -48,9 +48,7 @@ class MethodChannelFlutterQrcode extends FlutterQrcodePlatform {
         {'imagePath': imagePath},
       );
       if (result == null) return null;
-      return result
-          .map((e) => Barcode.fromJson(_convertMap(e)))
-          .toList();
+      return result.map((e) => Barcode.fromJson(_convertMap(e))).toList();
     } catch (e) {
       return null;
     }
@@ -64,9 +62,7 @@ class MethodChannelFlutterQrcode extends FlutterQrcodePlatform {
         {'imageBytes': Uint8List.fromList(imageBytes)},
       );
       if (result == null) return null;
-      return result
-          .map((e) => Barcode.fromJson(_convertMap(e)))
-          .toList();
+      return result.map((e) => Barcode.fromJson(_convertMap(e))).toList();
     } catch (e) {
       return null;
     }
@@ -75,7 +71,9 @@ class MethodChannelFlutterQrcode extends FlutterQrcodePlatform {
   @override
   Future<bool> requestCameraPermission() async {
     try {
-      final result = await methodChannel.invokeMethod<bool>('requestCameraPermission');
+      final result = await methodChannel.invokeMethod<bool>(
+        'requestCameraPermission',
+      );
       return result ?? false;
     } catch (e) {
       return false;
@@ -85,7 +83,9 @@ class MethodChannelFlutterQrcode extends FlutterQrcodePlatform {
   @override
   Future<bool> hasCameraPermission() async {
     try {
-      final result = await methodChannel.invokeMethod<bool>('hasCameraPermission');
+      final result = await methodChannel.invokeMethod<bool>(
+        'hasCameraPermission',
+      );
       return result ?? false;
     } catch (e) {
       return false;

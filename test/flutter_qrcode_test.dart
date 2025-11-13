@@ -4,9 +4,9 @@ import 'package:lumi_qr_scanner/lumi_qr_scanner_platform_interface.dart';
 import 'package:lumi_qr_scanner/lumi_qr_scanner_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockFlutterQrcodePlatform
+class MockLumiQrScannerPlatform
     with MockPlatformInterfaceMixin
-    implements FlutterQrcodePlatform {
+    implements LumiQrScannerPlatform {
   @override
   Future<List<Barcode>?> scanImagePath(String imagePath) async => [];
 
@@ -21,17 +21,17 @@ class MockFlutterQrcodePlatform
 }
 
 void main() {
-  final FlutterQrcodePlatform initialPlatform = FlutterQrcodePlatform.instance;
+  final LumiQrScannerPlatform initialPlatform = LumiQrScannerPlatform.instance;
 
-  test('$MethodChannelFlutterQrcode is the default instance', () {
-    expect(initialPlatform, isInstanceOf<MethodChannelFlutterQrcode>());
+  test('$MethodChannelLumiQrScanner is the default instance', () {
+    expect(initialPlatform, isInstanceOf<MethodChannelLumiQrScanner>());
   });
 
   test('hasCameraPermission', () async {
-    final flutterQrcodePlugin = FlutterQrcode.instance;
-    final fakePlatform = MockFlutterQrcodePlatform();
-    FlutterQrcodePlatform.instance = fakePlatform;
+    final lumiQrScannerPlugin = LumiQrScanner.instance;
+    final fakePlatform = MockLumiQrScannerPlatform();
+    LumiQrScannerPlatform.instance = fakePlatform;
 
-    expect(await flutterQrcodePlugin.hasCameraPermission(), true);
+    expect(await lumiQrScannerPlugin.hasCameraPermission(), true);
   });
 }

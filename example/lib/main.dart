@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter QRCode Scanner',
+      title: 'Lumi QR Scanner',
       theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
       home: const HomePage(),
     );
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter QRCode Scanner'),
+        title: const Text('Lumi QR Scanner'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
@@ -123,7 +123,7 @@ class HomePage extends StatelessWidget {
                   );
 
                   // Scan the selected image for QR codes
-                  final barcodes = await FlutterQrcode.instance.scanImagePath(
+                  final barcodes = await LumiQrScanner.instance.scanImagePath(
                     image.path,
                   );
 
@@ -323,9 +323,9 @@ class _ScannerPageState extends State<ScannerPage> {
   }
 
   Future<void> _checkPermission() async {
-    final hasPermission = await FlutterQrcode.instance.hasCameraPermission();
+    final hasPermission = await LumiQrScanner.instance.hasCameraPermission();
     if (!hasPermission) {
-      final granted = await FlutterQrcode.instance.requestCameraPermission();
+      final granted = await LumiQrScanner.instance.requestCameraPermission();
       setState(() {
         _hasPermission = granted;
       });

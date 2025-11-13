@@ -3,23 +3,22 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 import 'lumi_qr_scanner_method_channel.dart';
 import 'src/models/barcode.dart';
 
-abstract class FlutterQrcodePlatform extends PlatformInterface {
-  /// Constructs a FlutterQrcodePlatform.
-  FlutterQrcodePlatform() : super(token: _token);
+abstract class LumiQrScannerPlatform extends PlatformInterface {
+  LumiQrScannerPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static FlutterQrcodePlatform _instance = MethodChannelFlutterQrcode();
+  static LumiQrScannerPlatform _instance = MethodChannelLumiQrScanner();
 
-  /// The default instance of [FlutterQrcodePlatform] to use.
+  /// The default instance of [LumiQrScannerPlatform] to use.
   ///
-  /// Defaults to [MethodChannelFlutterQrcode].
-  static FlutterQrcodePlatform get instance => _instance;
+  /// Defaults to [MethodChannelLumiQrScanner].
+  static LumiQrScannerPlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
-  /// platform-specific class that extends [FlutterQrcodePlatform] when
+  /// platform-specific class that extends [LumiQrScannerPlatform] when
   /// they register themselves.
-  static set instance(FlutterQrcodePlatform instance) {
+  static set instance(LumiQrScannerPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }
@@ -44,7 +43,9 @@ abstract class FlutterQrcodePlatform extends PlatformInterface {
   ///
   /// Returns true if permission is granted, false otherwise
   Future<bool> requestCameraPermission() {
-    throw UnimplementedError('requestCameraPermission() has not been implemented.');
+    throw UnimplementedError(
+      'requestCameraPermission() has not been implemented.',
+    );
   }
 
   /// Check if camera permission is granted

@@ -1,6 +1,6 @@
 name: lumi_qr_scanner
 description: "A fast and lightweight Flutter plugin for scanning barcodes and QR codes using the device's camera. Supports multiple barcode formats with CameraX/ML Kit on Android and AVFoundation on iOS/macOS."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/Nghi-NV/lumi_qr_scanner
 repository: https://github.com/Nghi-NV/lumi_qr_scanner
 
@@ -23,9 +23,9 @@ flutter:
     platforms:
       android:
         package: com.nghinv.flutter_qrcode
-        pluginClass: FlutterQrcodePlugin
+        pluginClass: LumiQrScannerPlugin
       ios:
-        pluginClass: FlutterQrcodePlugin
+        pluginClass: LumiQrScannerPlugin
       macos:
-        pluginClass: FlutterQrcodePlugin
+        pluginClass: LumiQrScannerPlugin
 

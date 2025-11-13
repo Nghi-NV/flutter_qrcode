@@ -146,7 +146,7 @@ Future<void> scanFromGallery() async {
   final image = await picker.pickImage(source: ImageSource.gallery);
 
   if (image != null) {
-    final barcodes = await FlutterQrcode.instance.scanImagePath(image.path);
+    final barcodes = await LumiQrScanner.instance.scanImagePath(image.path);
 
     if (barcodes.isNotEmpty) {
       // Process found barcodes
@@ -167,7 +167,7 @@ import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 import 'dart:typed_data';
 
 Future<void> scanFromBytes(Uint8List imageBytes) async {
-  final barcodes = await FlutterQrcode.instance.scanImageBytes(imageBytes);
+  final barcodes = await LumiQrScanner.instance.scanImageBytes(imageBytes);
 
   if (barcodes.isNotEmpty) {
     for (var barcode in barcodes) {
@@ -184,10 +184,10 @@ Future<void> scanFromBytes(Uint8List imageBytes) async {
 import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 
 Future<void> requestPermission() async {
-  final hasPermission = await FlutterQrcode.instance.hasCameraPermission();
+  final hasPermission = await LumiQrScanner.instance.hasCameraPermission();
 
   if (!hasPermission) {
-    final granted = await FlutterQrcode.instance.requestCameraPermission();
+    final granted = await LumiQrScanner.instance.requestCameraPermission();
 
     if (granted) {
       // Camera permission granted, proceed with scanning
