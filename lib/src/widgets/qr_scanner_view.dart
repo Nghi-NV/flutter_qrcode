@@ -89,7 +89,7 @@ class _QRScannerViewState extends State<QRScannerView> {
   }
 
   Widget _buildNativeView() {
-    const String viewType = 'plugins.flutter_qrcode/scanner_view';
+    const String viewType = 'plugins.lumi_qr_scanner/scanner_view';
 
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -162,7 +162,7 @@ class QRScannerController {
 
   void _setPlatformViewId(int id) {
     _platformViewId = id;
-    _channel = MethodChannel('plugins.flutter_qrcode/scanner_view_$id');
+    _channel = MethodChannel('plugins.lumi_qr_scanner/scanner_view_$id');
     _channel!.setMethodCallHandler(_handleMethodCall);
   }
 

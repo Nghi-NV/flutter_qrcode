@@ -32,7 +32,7 @@ class QRScannerView(
     private val previewView: PreviewView = PreviewView(context)
     private val methodChannel: MethodChannel = MethodChannel(
         messenger,
-        "plugins.flutter_qrcode/scanner_view_$id"
+        "plugins.lumi_qr_scanner/scanner_view_$id"
     )
 
     private var cameraExecutor: ExecutorService = Executors.newSingleThreadExecutor()

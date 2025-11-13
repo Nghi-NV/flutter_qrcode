@@ -1,7 +1,7 @@
 // Example showing how to draw bounding box overlay on detected QR codes
 
 import 'package:flutter/material.dart';
-import 'package:flutter_qrcode/flutter_qrcode.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 
 /// Example showing bounding box overlay when QR code is detected
 class BoundingBoxExample extends StatefulWidget {

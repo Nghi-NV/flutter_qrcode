@@ -1,6 +1,6 @@
 # QR Code Alert Examples
 
-This document explains how to show alerts when QR codes are detected using the flutter_qrcode plugin.
+This document explains how to show alerts when QR codes are detected using the lumi_qr_scanner plugin.
 
 ## Quick Start
 

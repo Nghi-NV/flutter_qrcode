@@ -1,6 +1,6 @@
-# flutter_qrcode_example
+# lumi_qr_scanner_example
 
-Demonstrates how to use the flutter_qrcode plugin.
+Demonstrates how to use the lumi_qr_scanner plugin.
 
 ## Getting Started
 

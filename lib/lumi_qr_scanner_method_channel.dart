@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-import 'flutter_qrcode_platform_interface.dart';
+import 'lumi_qr_scanner_platform_interface.dart';
 import 'src/models/barcode.dart';
 
 /// An implementation of [FlutterQrcodePlatform] that uses method channels.
 class MethodChannelFlutterQrcode extends FlutterQrcodePlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('flutter_qrcode');
+  final methodChannel = const MethodChannel('lumi_qr_scanner');
 
   /// Recursively convert Map<Object?, Object?> to Map<String, dynamic>
   Map<String, dynamic> _convertMap(dynamic map) {

@@ -28,7 +28,7 @@ class QRScannerView: NSObject, FlutterPlatformView {
         self.viewId = viewId
         self.config = args as? [String: Any]
         self.channel = FlutterMethodChannel(
-            name: "plugins.flutter_qrcode/scanner_view_\(viewId)",
+            name: "plugins.lumi_qr_scanner/scanner_view_\(viewId)",
             binaryMessenger: messenger
         )
 

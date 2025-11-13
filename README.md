@@ -1,4 +1,4 @@
-# flutter_qrcode
+# lumi_qr_scanner
 
 A fast and lightweight Flutter plugin for scanning barcodes and QR codes using the device's camera. Supports multiple barcode formats, real-time detection, and customization options for an optimized scanning experience on Android, iOS, and macOS.
 
@@ -20,7 +20,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  flutter_qrcode: ^0.0.1
+  lumi_qr_scanner: ^0.0.1
 ```
 
 Then run:
@@ -80,7 +80,7 @@ Also, enable camera entitlement in `macos/Runner/DebugProfile.entitlements` and 
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter_qrcode/flutter_qrcode.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 
 class ScannerPage extends StatefulWidget {
   const ScannerPage({super.key});
@@ -138,7 +138,7 @@ class _ScannerPageState extends State<ScannerPage> {
 ### 2. Scan from Image
 
 ```dart
-import 'package:flutter_qrcode/flutter_qrcode.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 import 'package:image_picker/image_picker.dart';
 
 Future<void> scanFromGallery() async {
@@ -163,7 +163,7 @@ Future<void> scanFromGallery() async {
 ### 3. Scan from Image Bytes
 
 ```dart
-import 'package:flutter_qrcode/flutter_qrcode.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 import 'dart:typed_data';
 
 Future<void> scanFromBytes(Uint8List imageBytes) async {
@@ -181,7 +181,7 @@ Future<void> scanFromBytes(Uint8List imageBytes) async {
 ### 4. Request Camera Permission
 
 ```dart
-import 'package:flutter_qrcode/flutter_qrcode.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 
 Future<void> requestPermission() async {
   final hasPermission = await FlutterQrcode.instance.hasCameraPermission();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_qrcode/flutter_qrcode.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'bounding_box_example.dart';

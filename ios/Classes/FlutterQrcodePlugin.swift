@@ -5,13 +5,13 @@ import Vision
 
 public class FlutterQrcodePlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "flutter_qrcode", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "lumi_qr_scanner", binaryMessenger: registrar.messenger())
     let instance = FlutterQrcodePlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
 
     // Register platform view
     let factory = QRScannerViewFactory(messenger: registrar.messenger())
-    registrar.register(factory, withId: "plugins.flutter_qrcode/scanner_view")
+    registrar.register(factory, withId: "plugins.lumi_qr_scanner/scanner_view")
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {

@@ -41,12 +41,12 @@ class FlutterQrcodePlugin: FlutterPlugin, MethodCallHandler, ActivityAware,
 
   override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     context = flutterPluginBinding.applicationContext
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_qrcode")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "lumi_qr_scanner")
     channel.setMethodCallHandler(this)
 
     // Register platform view
     flutterPluginBinding.platformViewRegistry.registerViewFactory(
-      "plugins.flutter_qrcode/scanner_view",
+      "plugins.lumi_qr_scanner/scanner_view",
       QRScannerViewFactory(flutterPluginBinding.binaryMessenger)
     )
   }

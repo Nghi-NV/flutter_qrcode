@@ -1,7 +1,7 @@
 // Simple example showing how to display an alert when QR code is detected
 
 import 'package:flutter/material.dart';
-import 'package:flutter_qrcode/flutter_qrcode.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 
 /// Minimal example of QR scanning with alert dialog
 class SimpleAlertExample extends StatefulWidget {

@@ -9,7 +9,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-import 'package:flutter_qrcode/flutter_qrcode.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

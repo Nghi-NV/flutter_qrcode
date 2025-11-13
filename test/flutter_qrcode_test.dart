@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_qrcode/flutter_qrcode.dart';
-import 'package:flutter_qrcode/flutter_qrcode_platform_interface.dart';
-import 'package:flutter_qrcode/flutter_qrcode_method_channel.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner_platform_interface.dart';
+import 'package:lumi_qr_scanner/lumi_qr_scanner_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockFlutterQrcodePlatform

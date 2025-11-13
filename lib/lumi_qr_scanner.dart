@@ -1,4 +1,4 @@
-import 'flutter_qrcode_platform_interface.dart';
+import 'lumi_qr_scanner_platform_interface.dart';
 import 'src/models/barcode.dart';
 
 // Export models

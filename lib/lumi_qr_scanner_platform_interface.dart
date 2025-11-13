@@ -1,6 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'flutter_qrcode_method_channel.dart';
+import 'lumi_qr_scanner_method_channel.dart';
 import 'src/models/barcode.dart';
 
 abstract class FlutterQrcodePlatform extends PlatformInterface {
