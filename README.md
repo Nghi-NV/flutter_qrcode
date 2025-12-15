@@ -20,7 +20,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  lumi_qr_scanner: ^0.0.1
+  lumi_qr_scanner: ^0.1.0
 ```
 
 Then run:

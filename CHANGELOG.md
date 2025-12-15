@@ -1,3 +1,6 @@
+## 0.1.0
+* Fix bug 16kb
+
 ## 0.0.4
 * Update flutter sdk version to >=3.0.0 <4.0.0
 
